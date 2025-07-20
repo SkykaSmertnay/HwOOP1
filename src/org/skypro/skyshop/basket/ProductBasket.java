@@ -45,7 +45,7 @@ public class ProductBasket {
          k++;
       }
       }
-      if (k == 5) {
+      if (k == basketAll.length) {
          System.out.println("в корзине пусто");
       } else {
          for (int i = 0; i < basketAll.length; i++) {
@@ -62,7 +62,7 @@ public class ProductBasket {
             k++;
          }
       }
-      if (k != 5){
+      if (k != basketAll.length){
          for (Product product : basketAll) {
             if (Objects.equals(product.getProductName(), name)) {
                return true;
