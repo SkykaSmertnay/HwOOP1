@@ -34,16 +34,21 @@ public class ProductBasket {
 
    public void printBasket() {
       int k = 0;
+      int specialCounter = 0;
       k = howManyItems();
       if (k == 0) {
          System.out.println("в корзине пусто");
       } else {
          for (int i = 0; i < basketAll.length; i++) {
             System.out.println(basketAll[i]);
+            if (basketAll[i].isSpecial()) {
+               specialCounter++;
+            }
          }
 
       }
       System.out.println("Итого: " + basketPrice());
+      System.out.println("Специальных товаров: " + specialCounter);
 
    }
    public boolean isProductInBasket(String name) {
