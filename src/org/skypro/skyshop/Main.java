@@ -36,5 +36,6 @@ public class Main {
         basket1.printBasket();
         System.out.println("Стоимость корзины " + basket1.basketPrice());
         System.out.println("Есть ли в корзине искомый продукт: " + basket1.isProductInBasket("вода"));
+
     }
 }
