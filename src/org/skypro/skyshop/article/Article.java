@@ -24,12 +24,12 @@ public final class Article implements Searchable  {
 
     @Override
     public String searchTerm() {
-        return toString() + "ARTICLE";
+        return toString();
     }
 
     @Override
     public String searchedContent() {
-        return text;
+        return "ARTICLE";
     }
 
     @Override

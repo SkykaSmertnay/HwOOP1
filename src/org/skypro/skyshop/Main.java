@@ -35,10 +35,10 @@ public class Main {
         ProductBasket basket1 = new ProductBasket();
         searchEngine.add(beer);
         searchEngine.add(water);
-        searchEngine.add(chicken);
-        searchEngine.add(article1);
-        searchEngine.add(cola);
         searchEngine.add(tea);
+        searchEngine.add(article1);
+        searchEngine.add(tea);
+        searchEngine.add(cola);
         searchEngine.add(eggs);
 
 
@@ -62,7 +62,10 @@ public class Main {
         System.out.println("Стоимость корзины " + basket1.basketPrice());
         System.out.println("Есть ли в корзине искомый продукт: " + basket1.isProductInBasket("вода"));
         System.out.println(water.searchTerm());
-        System.out.println(Arrays.toString(searchEngine.search(basket2)));
+        System.out.println(Arrays.toString(searchEngine.search(article1)));
+        System.out.println(Arrays.toString(searchEngine.search(water)));
+        System.out.println(Arrays.toString(searchEngine.search(tea)));
+        System.out.println(Arrays.toString(searchEngine.search(article1)));
 
     }
 }

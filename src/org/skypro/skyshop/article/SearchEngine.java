@@ -3,9 +3,9 @@ package org.skypro.skyshop.article;
 import java.util.Arrays;
 
 public class SearchEngine {
-    Searchable[] searchable;
-    private int count = 0;
-    int size;
+   private Searchable[] searchable;
+   private int size;
+
 
 
     public SearchEngine(int size) {
@@ -13,14 +13,13 @@ public class SearchEngine {
         this.searchable = new Searchable[size];
 
     }
-    Searchable[] searched = new Searchable[5];
 
-    public Searchable[] search(Searchable[] whatSearch) {
+    public Searchable[] search(Searchable whatSearch) {
+        Searchable[] searched = new Searchable[size];
         int count1 = 0;
-        for (int j = 0; j < searched.length; j++) {
-            for (int i = 0; i < searched.length; i++) {
-                if (searched[i].searchTerm().contains(whatSearch[j].searchTerm())) {
-                    searchable[count1] = searched[i];
+            for (int i = 0; i < searchable.length; i++) {
+                if (searchable[i].searchTerm().contains(whatSearch.searchTerm())) {
+                    searched[count1] = searchable[i];
                     count1++;
                     if (count1 == size) {
                         System.out.println("Массив переполнен");
@@ -29,16 +28,17 @@ public class SearchEngine {
 
                 }
             }
-        }
-        return searchable;
-    }
 
+        return searched;
+    }
+    int count = 0;
     public void add(Searchable whatToAdd) {
+
         if(count == size) {
             System.out.println("Массив переполнен");
             return;
         }
-        searched[count] = whatToAdd;
+        searchable[count] = whatToAdd;
         count++;
 
     }
