@@ -67,5 +67,6 @@ public class Main {
         System.out.println(Arrays.toString(searchEngine.search(tea)));
         System.out.println(Arrays.toString(searchEngine.search(article1)));
 
+
     }
 }

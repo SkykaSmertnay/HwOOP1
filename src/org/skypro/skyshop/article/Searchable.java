@@ -7,4 +7,5 @@ public interface  Searchable {
     default String getStringRepresentation() {
         return "Имя объекта " + " Тип объекта";
     }
+
 }
