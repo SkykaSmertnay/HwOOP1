@@ -51,7 +51,6 @@ public abstract class Product implements Searchable {
     public String getSearchedName() {
         return name;
     }
-
 }
 
 
