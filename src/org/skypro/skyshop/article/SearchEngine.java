@@ -32,9 +32,12 @@ public class SearchEngine {
         return searched;
     }
     int count = 0;
+
     public void add(Searchable whatToAdd) {
 
-        if(count == size) {
+
+
+        if(count == searchable.length) {
             System.out.println("Массив переполнен");
             return;
         }
