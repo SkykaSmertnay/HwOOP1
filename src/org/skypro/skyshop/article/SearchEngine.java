@@ -9,13 +9,13 @@ public class SearchEngine {
 
 
     public SearchEngine(int size) {
-        this.size = size;
         this.searchable = new Searchable[size];
+        this.size = 0;
 
     }
 
     public Searchable[] search(Searchable whatSearch) {
-        Searchable[] searched = new Searchable[size];
+        Searchable[] searched = new Searchable[searchable.length];
         int count1 = 0;
             for (int i = 0; i < searchable.length; i++) {
                 if (searchable[i].searchTerm().contains(whatSearch.searchTerm())) {
@@ -31,18 +31,18 @@ public class SearchEngine {
 
         return searched;
     }
-    int count = 0;
+
 
     public void add(Searchable whatToAdd) {
 
 
 
-        if(count == searchable.length) {
+        if(size == searchable.length) {
             System.out.println("Массив переполнен");
             return;
         }
-        searchable[count] = whatToAdd;
-        count++;
+        searchable[size] = whatToAdd;
+        size++;
 
     }
 }

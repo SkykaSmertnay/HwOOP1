@@ -24,14 +24,6 @@ public class Main {
         DiscountedProduct mead = new DiscountedProduct("медовуха",100,20);
         DiscountedProduct tea = new DiscountedProduct("чай",250,15);
         FixPriceProduct eggs = new FixPriceProduct("яйца");
-        Searchable[] basket2 = new Searchable[5];
-        basket2[0] = beer;
-        basket2[1] = water;
-        basket2[2] = chicken;
-        basket2[3] = article1;
-        basket2[4] = tea;
-
-
         ProductBasket basket1 = new ProductBasket();
         searchEngine.add(beer);
         searchEngine.add(water);
