@@ -5,9 +5,15 @@ import java.util.Objects;
 public class SimpleProduct extends Product {
    private int price;
 
-    public SimpleProduct(String productName, int productPrice) {
-        super (productName);
-        this.price = productPrice;
+    public SimpleProduct(String name, int price) {
+        super (name);
+
+            if (price > 0) {
+                this.price = price;
+            } else {
+                throw new IllegalArgumentException();
+            }
+
     }
 
     @Override
