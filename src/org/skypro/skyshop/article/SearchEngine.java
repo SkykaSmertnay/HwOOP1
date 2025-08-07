@@ -48,11 +48,14 @@ public class SearchEngine {
     public Searchable searchBestResult (String search) throws BestResultNotFound {
         int index = -1;
         int maxRepeatCounter = 0;
+        int repeatCounter = 0;
 
         for (int i = 0; i < searchable.length; i++) {
-            if (maxRepeat(searchable[i].searchTerm(), search) > maxRepeatCounter ){
+            maxRepeatCounter = maxRepeat(searchable[i].searchTerm(), search);
+            if (repeatCounter < maxRepeatCounter ){
                 index = i;
-                maxRepeatCounter = maxRepeat(searchable[i].searchTerm(), search);
+                repeatCounter = maxRepeatCounter;
+
             }
         }
 
