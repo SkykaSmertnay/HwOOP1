@@ -13,10 +13,9 @@ import org.skypro.skyshop.product.SimpleProduct;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws BestResultNotFound {
+    public static void main(String[] args)  {
         SearchEngine searchEngine = new SearchEngine(5);
         Article article1 = new Article("Article1","Text");
-
         SimpleProduct beer = new SimpleProduct("пиво",70);
         SimpleProduct chips = new SimpleProduct("чипсы",50);
         SimpleProduct water = new SimpleProduct("вода",20);
@@ -26,8 +25,18 @@ public class Main {
         DiscountedProduct mead = new DiscountedProduct("медовуха",100,20);
         DiscountedProduct tea = new DiscountedProduct("чай",250,15);
         FixPriceProduct eggs = new FixPriceProduct("яйца");
-        SimpleProduct twix = new SimpleProduct("",0);
-        DiscountedProduct sprite = new DiscountedProduct("спрайт",0,101);
+        try {
+            SimpleProduct twix = new SimpleProduct("", 0);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Название продукта не может быть пустым!");
+            System.out.println("Цена должна быть строго больше 0!");
+        }
+        try {
+            DiscountedProduct sprite = new DiscountedProduct("спрайт", 0, 101);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Цена должна быть строго больше 0!");
+            System.out.println("Скидка должна быть в диапозоне от 0 до 100 включительно!");
+        }
         ProductBasket basket1 = new ProductBasket();
         searchEngine.add(beer);
         searchEngine.add(water);
@@ -61,7 +70,16 @@ public class Main {
         System.out.println(Arrays.toString(searchEngine.search(water)));
         System.out.println(Arrays.toString(searchEngine.search(tea)));
         System.out.println(Arrays.toString(searchEngine.search(article1)));
-        System.out.println(searchEngine.s("курица"));
-        System.out.println(searchEngine.s("вода"));
+        try {
+            System.out.println(searchEngine.searchBestResult("курица"));
+        } catch (BestResultNotFound exception) {
+            System.out.println(exception);;
+        }
+        try {
+
+            System.out.println(searchEngine.searchBestResult("вода"));
+        } catch (BestResultNotFound exception) {
+            System.out.println(exception);;
+        }
     }
 }

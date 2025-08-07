@@ -45,52 +45,23 @@ public class SearchEngine {
         searchable[size] = whatToAdd;
         size++;
     }
-    public Searchable s (String search) throws BestResultNotFound {
+    public Searchable searchBestResult (String search) throws BestResultNotFound {
         int index = -1;
-        int maxRepeat = 0;
+        int maxRepeatCounter = 0;
 
-
-        Searchable searched = new Searchable() {
-            @Override
-            public String toString() {
-
-                return "-";
-            }
-
-            @Override
-            public String searchTerm() {
-                return search;
-            }
-
-            @Override
-            public String searchedContent() {
-                return "";
-            }
-
-            @Override
-            public String getSearchedName() {
-                return search;
-            }
-
-        };
         for (int i = 0; i < searchable.length; i++) {
-            if (maxRepeat(searchable[i].searchTerm(), searched.searchTerm()) > maxRepeat ){
+            if (maxRepeat(searchable[i].searchTerm(), search) > maxRepeatCounter ){
                 index = i;
-                maxRepeat = maxRepeat(searchable[i].searchTerm(), searched.searchTerm());
+                maxRepeatCounter = maxRepeat(searchable[i].searchTerm(), search);
             }
         }
-        try {
-
 
             if (index != -1) {
-                searched = searchable[index];
+                return searchable[index];
             } else {
                 throw new BestResultNotFound(search);
             }
-        } catch (BestResultNotFound exception) {
-            System.out.println(exception);
-        }
-        return searched;
+
     }
 
     private int maxRepeat(String str, String substring) {

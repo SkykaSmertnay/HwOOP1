@@ -7,24 +7,19 @@ public class DiscountedProduct extends Product{
 
     public DiscountedProduct(String name, int basePrice, int discount) {
         super(name);
-        try {
+
             if (basePrice > 0) {
                 this.basePrice = basePrice;
             } else {
                 throw new IllegalArgumentException();
             }
-        } catch (IllegalArgumentException exception) {
-            System.out.println("Цена должна быть строго больше 0!");
-        }
-        try {
+
             if (0 <= discount && discount <= 100) {
                 this.discount = discount;
             } else {
                 throw new IllegalArgumentException();
             }
-        } catch (IllegalArgumentException exception) {
-            System.out.println("Скидка должна быть в диапозоне от 0 до 100 включительно!");
-        }
+
 
     }
 

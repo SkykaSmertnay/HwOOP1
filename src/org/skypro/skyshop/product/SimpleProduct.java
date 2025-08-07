@@ -7,15 +7,13 @@ public class SimpleProduct extends Product {
 
     public SimpleProduct(String name, int price) {
         super (name);
-        try {
+
             if (price > 0) {
                 this.price = price;
             } else {
                 throw new IllegalArgumentException();
             }
-        } catch (IllegalArgumentException exception) {
-            System.out.println("Цена должна быть строго больше 0!");
-        }
+
     }
 
     @Override
