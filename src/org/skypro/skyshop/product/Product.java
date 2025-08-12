@@ -7,8 +7,14 @@ import java.util.Objects;
 public abstract class Product implements Searchable {
    protected String name;
 
-    public Product (String name){
-        this.name = name;
+    public Product  (String name){
+
+            if (name != null && !name.isBlank()) {
+                this.name = name;
+            } else {
+                throw new IllegalArgumentException();
+            }
+
     }
 
     public String getName() {

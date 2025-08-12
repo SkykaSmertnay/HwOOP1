@@ -1,6 +1,10 @@
 package org.skypro.skyshop.article;
 
+import org.skypro.skyshop.article.BestResultNotFound.BestResultNotFound;
+
+import java.lang.module.FindException;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class SearchEngine {
    private Searchable[] searchable;
@@ -34,15 +38,44 @@ public class SearchEngine {
 
 
     public void add(Searchable whatToAdd) {
-
-
-
         if(size == searchable.length) {
             System.out.println("Массив переполнен");
             return;
         }
         searchable[size] = whatToAdd;
         size++;
+    }
+    public Searchable searchBestResult (String search) throws BestResultNotFound {
+        int index = -1;
+        int maxRepeatCounter = 0;
+        int repeatCounter = 0;
 
+        for (int i = 0; i < searchable.length; i++) {
+            maxRepeatCounter = maxRepeat(searchable[i].searchTerm(), search);
+            if (repeatCounter < maxRepeatCounter ){
+                index = i;
+                repeatCounter = maxRepeatCounter;
+
+            }
+        }
+
+            if (index != -1) {
+                return searchable[index];
+            } else {
+                throw new BestResultNotFound(search);
+            }
+
+    }
+
+    private int maxRepeat(String str, String substring) {
+        int count = 0;
+        int index = 0;
+        int substringIndex = str.indexOf(substring, index);
+        while (substringIndex != -1) {
+            count++;
+            index = substringIndex + substring.length();
+            substringIndex = str.indexOf(substring, index);
+        }
+        return count;
     }
 }
