@@ -2,23 +2,18 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class ProductBasket {
-   private Product[] basketAll = new Product[5];
+
+   private List<Product> basketAll = new LinkedList<>();
+   private int count = 0 ;
 
    public  void addProduct(Product product) {
-      int k = 0;
-      for (int i=0; i < basketAll.length;i++) {
-         if (basketAll[i] == null) {
-            basketAll[i] = product;
-            break;
-         }
-         k = howManyItems();
-      }
-      if (k == 5) {
-         System.out.println("Невозможно добавить продукт");
-      }
+      basketAll.add(product);
+      count++;
    }
    public int basketPrice() {
       int basketPrice = 0;
@@ -33,15 +28,16 @@ public class ProductBasket {
 
 
    public void printBasket() {
-      int k = 0;
+
+
       int specialCounter = 0;
-      k = howManyItems();
-      if (k == 0) {
+
+      if (count == 0) {
          System.out.println("в корзине пусто");
       } else {
-         for (int i = 0; i < basketAll.length; i++) {
-            System.out.println(basketAll[i]);
-            if (basketAll[i].isSpecial()) {
+         for (int i = 0; i < count; i++) {
+            System.out.println(basketAll.get(i));
+            if (basketAll.get(i).isSpecial()) {
                specialCounter++;
             }
          }
@@ -58,7 +54,7 @@ public class ProductBasket {
             k++;
          }
       }
-      if (k != basketAll.length){
+      if (k != count){
          for (Product product : basketAll) {
             if (Objects.equals(product.getName(), name)) {
                return true;
@@ -69,21 +65,34 @@ public class ProductBasket {
    }
 
    public void deleteBasket() {
-      for (int i = 0; i < basketAll.length; i++) {
-         basketAll[i] = null;
-      }
-
+         basketAll.clear();
+         count = 0;
    }
 
-   public int howManyItems() {
-      int k = 0;
-      for (Product product : basketAll) {
-         if (product != null) {
-            k++;
+   public List deleteOneTypeOfProduct(Product product) {
+      int howManyDeleted = 0;
+      List<Product> deletedProducts = new LinkedList<>();
+      if (count == 0) {
+         System.out.println("Список пуст");
+         return deletedProducts;
+      }else {
+      for (int i = 0 ; i < count ; i++ ) {
+         if (Objects.equals(basketAll.get(i),product)) {
+            deletedProducts.add(basketAll.get(i));
+            basketAll.remove(i);
+            howManyDeleted++;
+            count--;
          }
       }
-      return k;
+      }
+      if (howManyDeleted == 0) {
+         System.out.println("Список пуст");
+      }
+
+      return deletedProducts;
    }
+
+
 }
 
 
