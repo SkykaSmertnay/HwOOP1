@@ -11,6 +11,7 @@ public class ProductBasket {
    private List<Product> basketAll = new LinkedList<>();
    private int count = 0 ;
 
+
    public  void addProduct(Product product) {
       basketAll.add(product);
       count++;

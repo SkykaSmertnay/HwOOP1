@@ -9,28 +9,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class SearchEngine {
-    private Searchable[] searchable;
-    private List<Searchable> search = new LinkedList<>();
-    private int size;
+    private List<Searchable> searchable = new LinkedList<>();
+    private int size = 0;
 
 
-    public SearchEngine(int size) {
-        this.searchable = new Searchable[size];
-        this.size = 0;
-
-    }
-
-    public Searchable[] search(Searchable whatSearch) {
-        Searchable[] searched = new Searchable[searchable.length];
+    public List search(Searchable whatSearch) {
+        //Searchable[] searched = new Searchable[size];
+        List<Searchable> searched = new LinkedList<>();
         int count1 = 0;
-        for (int i = 0; i < searchable.length; i++) {
-            if (searchable[i].searchTerm().contains(whatSearch.searchTerm())) {
-                searched[count1] = searchable[i];
+        for (int i = 0; i < size; i++) {
+            if (searchable.get(i).searchTerm().contains(whatSearch.searchTerm())) {
+                searched.add(searchable.get(i));
                 count1++;
-                if (count1 == size) {
-                    System.out.println("Массив переполнен");
-                    break;
-                }
 
             }
         }
@@ -40,11 +30,7 @@ public class SearchEngine {
 
 
     public void add(Searchable whatToAdd) {
-        if (size == searchable.length) {
-            System.out.println("Массив переполнен");
-            return;
-        }
-        searchable[size] = whatToAdd;
+        searchable.add(whatToAdd);
         size++;
     }
 
@@ -53,8 +39,8 @@ public class SearchEngine {
         int maxRepeatCounter = 0;
         int repeatCounter = 0;
 
-        for (int i = 0; i < searchable.length; i++) {
-            maxRepeatCounter = maxRepeat(searchable[i].searchTerm(), search);
+        for (int i = 0; i < size; i++) {
+            maxRepeatCounter = maxRepeat(searchable.get(i).searchTerm(), search);
             if (repeatCounter < maxRepeatCounter) {
                 index = i;
                 repeatCounter = maxRepeatCounter;
@@ -63,7 +49,7 @@ public class SearchEngine {
         }
 
         if (index != -1) {
-            return searchable[index];
+            return searchable.get(index);
         } else {
             throw new BestResultNotFound(search);
         }
