@@ -10,18 +10,16 @@ import java.util.Objects;
 
 public class SearchEngine {
     private List<Searchable> searchable = new LinkedList<>();
-    private int size = 0;
 
 
-    public List search(Searchable whatSearch) {
+
+    public LinkedList search(Searchable whatSearch) {
         //Searchable[] searched = new Searchable[size];
-        List<Searchable> searched = new LinkedList<>();
-        int count1 = 0;
-        for (int i = 0; i < size; i++) {
+        LinkedList<Searchable> searched = new LinkedList<>();
+
+        for (int i = 0; i < searchable.size(); i++) {
             if (searchable.get(i).searchTerm().contains(whatSearch.searchTerm())) {
                 searched.add(searchable.get(i));
-                count1++;
-
             }
         }
 
@@ -31,7 +29,6 @@ public class SearchEngine {
 
     public void add(Searchable whatToAdd) {
         searchable.add(whatToAdd);
-        size++;
     }
 
     public Searchable searchBestResult(String search) throws BestResultNotFound {
@@ -39,7 +36,7 @@ public class SearchEngine {
         int maxRepeatCounter = 0;
         int repeatCounter = 0;
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < searchable.size(); i++) {
             maxRepeatCounter = maxRepeat(searchable.get(i).searchTerm(), search);
             if (repeatCounter < maxRepeatCounter) {
                 index = i;

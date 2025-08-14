@@ -9,12 +9,12 @@ import java.util.Objects;
 public class ProductBasket {
 
    private List<Product> basketAll = new LinkedList<>();
-   private int count = 0 ;
+
 
 
    public  void addProduct(Product product) {
       basketAll.add(product);
-      count++;
+
    }
    public int basketPrice() {
       int basketPrice = 0;
@@ -33,10 +33,10 @@ public class ProductBasket {
 
       int specialCounter = 0;
 
-      if (count == 0) {
+      if (basketAll.isEmpty()) {
          System.out.println("в корзине пусто");
       } else {
-         for (int i = 0; i < count; i++) {
+         for (int i = 0; i < basketAll.size(); i++) {
             System.out.println(basketAll.get(i));
             if (basketAll.get(i).isSpecial()) {
                specialCounter++;
@@ -49,13 +49,8 @@ public class ProductBasket {
 
    }
    public boolean isProductInBasket(String name) {
-      int k = 0;
-      for (Product product : basketAll){
-         if (product == null) {
-            k++;
-         }
-      }
-      if (k != count){
+
+      if (!basketAll.isEmpty()){
          for (Product product : basketAll) {
             if (Objects.equals(product.getName(), name)) {
                return true;
@@ -67,26 +62,25 @@ public class ProductBasket {
 
    public void deleteBasket() {
          basketAll.clear();
-         count = 0;
+
    }
 
-   public List deleteOneTypeOfProduct(Product product) {
-      int howManyDeleted = 0;
-      List<Product> deletedProducts = new LinkedList<>();
-      if (count == 0) {
+   public LinkedList deleteOneTypeOfProduct(Product product) {
+
+      LinkedList<Product> deletedProducts = new LinkedList<>();
+      if (basketAll.isEmpty()) {
          System.out.println("Список пуст");
          return deletedProducts;
       }else {
-      for (int i = 0 ; i < count ; i++ ) {
+      for (int i = 0 ; i < basketAll.size() ; i++ ) {
          if (Objects.equals(basketAll.get(i),product)) {
             deletedProducts.add(basketAll.get(i));
             basketAll.remove(i);
-            howManyDeleted++;
-            count--;
+
          }
       }
       }
-      if (howManyDeleted == 0) {
+      if (deletedProducts.isEmpty()) {
          System.out.println("Список пуст");
       }
 
