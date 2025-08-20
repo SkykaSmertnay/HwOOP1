@@ -13,9 +13,9 @@ public class SearchEngine {
 
 
 
-    public LinkedList search(Searchable whatSearch) {
+    public List<Searchable> search(Searchable whatSearch) {
         //Searchable[] searched = new Searchable[size];
-        LinkedList<Searchable> searched = new LinkedList<>();
+        List<Searchable> searched = new LinkedList<>();
 
         for (int i = 0; i < searchable.size(); i++) {
             if (searchable.get(i).searchTerm().contains(whatSearch.searchTerm())) {

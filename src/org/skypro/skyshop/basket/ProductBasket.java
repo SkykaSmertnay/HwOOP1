@@ -65,9 +65,9 @@ public class ProductBasket {
 
    }
 
-   public LinkedList deleteOneTypeOfProduct(Product product) {
+   public List<Product> deleteOneTypeOfProduct(Product product) {
 
-      LinkedList<Product> deletedProducts = new LinkedList<>();
+      List<Product> deletedProducts = new LinkedList<>();
       if (basketAll.isEmpty()) {
          System.out.println("Список пуст");
          return deletedProducts;
