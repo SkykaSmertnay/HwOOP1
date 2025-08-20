@@ -4,66 +4,52 @@ import org.skypro.skyshop.article.BestResultNotFound.BestResultNotFound;
 
 import java.lang.module.FindException;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class SearchEngine {
-   private Searchable[] searchable;
-   private int size;
+    private List<Searchable> searchable = new LinkedList<>();
 
 
 
-    public SearchEngine(int size) {
-        this.searchable = new Searchable[size];
-        this.size = 0;
+    public List<Searchable> search(Searchable whatSearch) {
+        //Searchable[] searched = new Searchable[size];
+        List<Searchable> searched = new LinkedList<>();
 
-    }
-
-    public Searchable[] search(Searchable whatSearch) {
-        Searchable[] searched = new Searchable[searchable.length];
-        int count1 = 0;
-            for (int i = 0; i < searchable.length; i++) {
-                if (searchable[i].searchTerm().contains(whatSearch.searchTerm())) {
-                    searched[count1] = searchable[i];
-                    count1++;
-                    if (count1 == size) {
-                        System.out.println("Массив переполнен");
-                        break;
-                    }
-
-                }
+        for (int i = 0; i < searchable.size(); i++) {
+            if (searchable.get(i).searchTerm().contains(whatSearch.searchTerm())) {
+                searched.add(searchable.get(i));
             }
+        }
 
         return searched;
     }
 
 
     public void add(Searchable whatToAdd) {
-        if(size == searchable.length) {
-            System.out.println("Массив переполнен");
-            return;
-        }
-        searchable[size] = whatToAdd;
-        size++;
+        searchable.add(whatToAdd);
     }
-    public Searchable searchBestResult (String search) throws BestResultNotFound {
+
+    public Searchable searchBestResult(String search) throws BestResultNotFound {
         int index = -1;
         int maxRepeatCounter = 0;
         int repeatCounter = 0;
 
-        for (int i = 0; i < searchable.length; i++) {
-            maxRepeatCounter = maxRepeat(searchable[i].searchTerm(), search);
-            if (repeatCounter < maxRepeatCounter ){
+        for (int i = 0; i < searchable.size(); i++) {
+            maxRepeatCounter = maxRepeat(searchable.get(i).searchTerm(), search);
+            if (repeatCounter < maxRepeatCounter) {
                 index = i;
                 repeatCounter = maxRepeatCounter;
 
             }
         }
 
-            if (index != -1) {
-                return searchable[index];
-            } else {
-                throw new BestResultNotFound(search);
-            }
+        if (index != -1) {
+            return searchable.get(index);
+        } else {
+            throw new BestResultNotFound(search);
+        }
 
     }
 
