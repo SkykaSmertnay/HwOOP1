@@ -10,8 +10,6 @@ public class ProductBasket {
 
    private List<Product> basketAll = new LinkedList<>();
 
-
-
    public  void addProduct(Product product) {
       basketAll.add(product);
 
