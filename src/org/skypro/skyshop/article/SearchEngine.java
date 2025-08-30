@@ -1,26 +1,25 @@
 package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.article.BestResultNotFound.BestResultNotFound;
+import org.skypro.skyshop.product.Product;
 
 import java.lang.module.FindException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class SearchEngine {
     private List<Searchable> searchable = new LinkedList<>();
 
 
 
-    public List<Searchable> search(Searchable whatSearch) {
-        //Searchable[] searched = new Searchable[size];
-        List<Searchable> searched = new LinkedList<>();
+    public Map<String, Searchable> search(Searchable whatSearch) {
+        Map<String, Searchable> searched = new HashMap<>();
+        int i = 0;
 
-        for (int i = 0; i < searchable.size(); i++) {
+        for (Searchable searchable1 : searchable) {
             if (searchable.get(i).searchTerm().contains(whatSearch.searchTerm())) {
-                searched.add(searchable.get(i));
+                searched.put(searchable.get(i).searchTerm() ,searchable.get(i));
             }
+            i++;
         }
 
         return searched;
