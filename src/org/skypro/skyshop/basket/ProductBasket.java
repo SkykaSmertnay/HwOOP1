@@ -8,10 +8,7 @@ public class ProductBasket {
    private Map<String , List<Product>> basketAll = new HashMap<>();
 
    public  void addProduct(Product product) {
-      basketAll.computeIfPresent(product.getName(), (key, list) -> {
-         list.add(product);
-         return list;
-      });
+
       basketAll.computeIfAbsent(product.getName(), p -> new LinkedList<Product>()).add(product);
 
    }
