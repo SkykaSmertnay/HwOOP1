@@ -1,5 +1,7 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.article.Article;
+
 import java.util.Objects;
 
 public class SimpleProduct extends Product {
@@ -42,5 +44,11 @@ public class SimpleProduct extends Product {
     @Override
     public boolean isSpecial() {
         return false;
+    }
+
+
+    @Override
+    public int compareTo(Product o) {
+        return Integer.compare(Integer.compare(this.getSearchedName().length(), o.getSearchedName().length()), 0);
     }
 }

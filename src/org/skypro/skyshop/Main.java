@@ -44,6 +44,7 @@ public class Main {
         searchEngine.add(water);
         searchEngine.add(water2);
         searchEngine.add(article1);
+        searchEngine.add(article1);
         searchEngine.add(tea);
         searchEngine.add(cola);
         searchEngine.add(eggs);
@@ -60,8 +61,8 @@ public class Main {
         basket1.basketPrice();
         basket1.printBasket();
         System.out.println("Стоимость корзины " + basket1.basketPrice());
-        System.out.println("Есть ли в корзине искомый продукт: " +basket1.isProductInBasket("курица"));
-        System.out.println("Есть ли в корзине искомый продукт: " +basket1.isProductInBasket("медовуха"));
+        System.out.println("Есть ли в корзине искомый продукт(курица): " +basket1.isProductInBasket("курица"));
+        System.out.println("Есть ли в корзине искомый продукт(медовуха): " +basket1.isProductInBasket("медовуха"));
         basket1.deleteBasket();
         System.out.println("Очистили корзину");
         basket1.printBasket();
@@ -73,7 +74,7 @@ public class Main {
         System.out.println(searchEngine.search(water));
         System.out.println(searchEngine.search(tea));
         System.out.println(searchEngine.search(article1));
-        try {
+        /*try {
             System.out.println(searchEngine.searchBestResult("курица"));
         } catch (BestResultNotFound exception) {
             System.out.println(exception);
@@ -83,7 +84,7 @@ public class Main {
             System.out.println(searchEngine.searchBestResult("вода"));
         } catch (BestResultNotFound exception) {
             System.out.println(exception);
-        }
+        }*/
         basket1.addProduct(mead);
         basket1.addProduct(chips);
         basket1.addProduct(water);

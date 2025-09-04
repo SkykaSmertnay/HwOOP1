@@ -1,5 +1,7 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.article.Article;
+
 public class DiscountedProduct extends Product{
    private int basePrice;
    private int discount;
@@ -40,4 +42,9 @@ public class DiscountedProduct extends Product{
         return true;
     }
 
+
+    @Override
+    public int compareTo(Product o) {
+        return Integer.compare(Integer.compare(this.getSearchedName().length(), o.getSearchedName().length()), 0);
+    }
 }
