@@ -6,7 +6,11 @@ import org.skypro.skyshop.article.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main {
@@ -17,7 +21,7 @@ public class Main {
         SimpleProduct beer = new SimpleProduct("пиво",70);
         SimpleProduct chips = new SimpleProduct("чипсы",50);
         SimpleProduct water = new SimpleProduct("вода",20);
-        SimpleProduct water2 = new SimpleProduct("водаводавода",25);
+        SimpleProduct water2 = new SimpleProduct("вода",25);
         SimpleProduct chicken = new SimpleProduct("курица",250);
         SimpleProduct cola = new SimpleProduct("кола",150);
         DiscountedProduct mead = new DiscountedProduct("медовуха",100,20);
@@ -50,6 +54,8 @@ public class Main {
         basket1.addProduct(water2);
         basket1.addProduct(eggs);
         basket1.addProduct(tea);
+
+        basket1.p();
         System.out.println("Заполнили корзину");
         basket1.basketPrice();
         basket1.printBasket();
@@ -60,6 +66,7 @@ public class Main {
         System.out.println("Очистили корзину");
         basket1.printBasket();
         System.out.println("Стоимость корзины " + basket1.basketPrice());
+        searchEngine.add(water);
         System.out.println("Есть ли в корзине искомый продукт: " + basket1.isProductInBasket("вода"));
         System.out.println(water.searchTerm());
         System.out.println(searchEngine.search(article1));
