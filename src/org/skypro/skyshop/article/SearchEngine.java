@@ -2,25 +2,32 @@ package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.article.BestResultNotFound.BestResultNotFound;
 import org.skypro.skyshop.product.Product;
-
 import java.lang.module.FindException;
 import java.util.*;
 
-public class SearchEngine {
-    private List<Searchable> searchable = new LinkedList<>();
+public class SearchEngine implements Comparator<Searchable> {
+    private Set<Searchable> searchable = new HashSet<>();
 
 
 
-    public Map<String, Searchable> search(Searchable whatSearch) {
-        Map<String, Searchable> searched = new HashMap<>();
+    public Set<Searchable> search(Searchable whatSearch) {
+        Set<Searchable> searched = new TreeSet<>();
         int i = 0;
 
         for (Searchable searchable1 : searchable) {
+            if (searchable.contains(whatSearch)) {
+                searched.add(whatSearch);
+            }
+            i++;
+        }
+
+        /*for (Searchable searchable1 : searchable) {
             if (searchable.get(i).searchTerm().contains(whatSearch.searchTerm())) {
                 searched.put(searchable.get(i).searchTerm() ,searchable.get(i));
             }
             i++;
         }
+        */
 
         return searched;
     }
@@ -30,7 +37,7 @@ public class SearchEngine {
         searchable.add(whatToAdd);
     }
 
-    public Searchable searchBestResult(String search) throws BestResultNotFound {
+   /* public Searchable searchBestResult(String search) throws BestResultNotFound {
         int index = -1;
         int maxRepeatCounter = 0;
         int repeatCounter = 0;
@@ -50,7 +57,7 @@ public class SearchEngine {
             throw new BestResultNotFound(search);
         }
 
-    }
+    } */
 
     private int maxRepeat(String str, String substring) {
         int count = 0;
@@ -62,5 +69,11 @@ public class SearchEngine {
             substringIndex = str.indexOf(substring, index);
         }
         return count;
+    }
+
+    @Override
+    public int compare(Searchable o1, Searchable o2) {
+
+        return Integer.compare(o1.getSearchedName().length(), o2.getSearchedName().length());
     }
 }
