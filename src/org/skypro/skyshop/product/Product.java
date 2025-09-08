@@ -6,7 +6,7 @@ import org.skypro.skyshop.article.Searchable;
 import java.util.Comparator;
 import java.util.Objects;
 
-public abstract class Product implements Searchable, Comparable<Product> {
+public abstract class Product implements Searchable {
    protected String name;
 
     public Product  (String name){

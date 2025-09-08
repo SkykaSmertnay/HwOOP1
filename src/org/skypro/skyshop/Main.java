@@ -21,7 +21,8 @@ public class Main {
         SimpleProduct beer = new SimpleProduct("пиво",70);
         SimpleProduct chips = new SimpleProduct("чипсы",50);
         SimpleProduct water = new SimpleProduct("вода",20);
-        SimpleProduct water2 = new SimpleProduct("вода",25);
+        SimpleProduct water2 = new SimpleProduct("вода газированная",25);
+        SimpleProduct water3 = new SimpleProduct("вода с газом",25);
         SimpleProduct chicken = new SimpleProduct("курица",250);
         SimpleProduct cola = new SimpleProduct("кола",150);
         DiscountedProduct mead = new DiscountedProduct("медовуха",100,20);
@@ -74,17 +75,20 @@ public class Main {
         System.out.println(searchEngine.search(water));
         System.out.println(searchEngine.search(tea));
         System.out.println(searchEngine.search(article1));
-        /*try {
+        System.out.println("check");
+        try {
             System.out.println(searchEngine.searchBestResult("курица"));
         } catch (BestResultNotFound exception) {
             System.out.println(exception);
         }
         try {
 
-            System.out.println(searchEngine.searchBestResult("вода"));
+            System.out.println(searchEngine.searchBestResult("газ"));
         } catch (BestResultNotFound exception) {
             System.out.println(exception);
-        }*/
+        }
+        System.out.println("check2");
+        System.out.println(searchEngine.search(water));
         basket1.addProduct(mead);
         basket1.addProduct(chips);
         basket1.addProduct(water);

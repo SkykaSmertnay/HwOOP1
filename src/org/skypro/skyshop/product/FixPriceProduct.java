@@ -24,8 +24,5 @@ public class FixPriceProduct extends Product{
     }
 
 
-    @Override
-    public int compareTo(Product o) {
-        return Integer.compare(Integer.compare(this.getSearchedName().length(), o.getSearchedName().length()), 0);
-    }
+
 }

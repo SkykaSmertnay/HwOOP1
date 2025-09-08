@@ -1,64 +1,50 @@
 package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.article.BestResultNotFound.BestResultNotFound;
+import org.skypro.skyshop.comparator.ProducNameComparator;
 import org.skypro.skyshop.product.Product;
 import java.lang.module.FindException;
 import java.util.*;
 
-public class SearchEngine implements Comparator<Searchable> {
+public class SearchEngine   {
     private Set<Searchable> searchable = new HashSet<>();
 
 
 
     public Set<Searchable> search(Searchable whatSearch) {
-        Set<Searchable> searched = new TreeSet<>();
-        int i = 0;
-
-        for (Searchable searchable1 : searchable) {
-            if (searchable.contains(whatSearch)) {
-                searched.add(whatSearch);
+        Set<Searchable> searched = new TreeSet<>(new ProducNameComparator());
+        for (Searchable item : searchable) {
+            if (item.searchTerm().contains(whatSearch.searchTerm())) {
+                searched.add(item);
             }
-            i++;
         }
-
-        /*for (Searchable searchable1 : searchable) {
-            if (searchable.get(i).searchTerm().contains(whatSearch.searchTerm())) {
-                searched.put(searchable.get(i).searchTerm() ,searchable.get(i));
-            }
-            i++;
-        }
-        */
-
         return searched;
     }
-
-
     public void add(Searchable whatToAdd) {
         searchable.add(whatToAdd);
     }
 
-   /* public Searchable searchBestResult(String search) throws BestResultNotFound {
-        int index = -1;
+   public Searchable searchBestResult(String search) throws BestResultNotFound {
+        Searchable index = null;
         int maxRepeatCounter = 0;
         int repeatCounter = 0;
 
-        for (int i = 0; i < searchable.size(); i++) {
-            maxRepeatCounter = maxRepeat(searchable.get(i).searchTerm(), search);
+        for (Searchable item : searchable) {
+
+            maxRepeatCounter = maxRepeat(item.searchTerm(), search);
             if (repeatCounter < maxRepeatCounter) {
-                index = i;
+                index = item;
                 repeatCounter = maxRepeatCounter;
 
             }
         }
-
-        if (index != -1) {
-            return searchable.get(index);
+        if (index != null) {
+            return index;
         } else {
             throw new BestResultNotFound(search);
         }
 
-    } */
-
+    }
     private int maxRepeat(String str, String substring) {
         int count = 0;
         int index = 0;
@@ -71,9 +57,5 @@ public class SearchEngine implements Comparator<Searchable> {
         return count;
     }
 
-    @Override
-    public int compare(Searchable o1, Searchable o2) {
 
-        return Integer.compare(o1.getSearchedName().length(), o2.getSearchedName().length());
-    }
 }

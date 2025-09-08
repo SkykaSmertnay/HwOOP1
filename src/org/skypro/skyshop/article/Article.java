@@ -3,7 +3,7 @@ package org.skypro.skyshop.article;
 import java.util.Comparator;
 import java.util.Objects;
 
-public final class Article implements Searchable, Comparable<Article> {
+public final class Article implements Searchable{
     private String name;
     private String text;
 
@@ -61,10 +61,6 @@ public final class Article implements Searchable, Comparable<Article> {
     }
 
 
-    @Override
-    public int compareTo(Article o) {
-        return Integer.compare(Integer.compare(this.getSearchedName().length(), o.getSearchedName().length()), 0);
 
-    }
 }
 
