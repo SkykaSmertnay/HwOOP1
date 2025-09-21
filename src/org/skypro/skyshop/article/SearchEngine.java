@@ -5,6 +5,7 @@ import org.skypro.skyshop.comparator.ProducNameComparator;
 import org.skypro.skyshop.product.Product;
 import java.lang.module.FindException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SearchEngine   {
     private Set<Searchable> searchable = new HashSet<>();
@@ -12,13 +13,16 @@ public class SearchEngine   {
 
 
     public Set<Searchable> search(Searchable whatSearch) {
-        Set<Searchable> searched = new TreeSet<>(new ProducNameComparator());
+        /*Set<Searchable> searched = new TreeSet<>(new ProducNameComparator());
         for (Searchable item : searchable) {
             if (item.searchTerm().contains(whatSearch.searchTerm())) {
                 searched.add(item);
             }
         }
-        return searched;
+        return searched;*/
+        return searchable.stream()
+                .filter(item -> item.searchTerm().contains(whatSearch.searchTerm()))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(new ProducNameComparator())));
     }
     public void add(Searchable whatToAdd) {
         searchable.add(whatToAdd);
