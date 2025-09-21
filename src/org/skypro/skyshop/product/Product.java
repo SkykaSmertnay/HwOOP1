@@ -1,7 +1,9 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.article.Searchable;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public abstract class Product implements Searchable {
@@ -40,6 +42,7 @@ public abstract class Product implements Searchable {
         return name;
     }
 
+
     public abstract boolean isSpecial();
 
     @Override
@@ -57,6 +60,9 @@ public abstract class Product implements Searchable {
     public String getSearchedName() {
         return name;
     }
+
+
+
 }
 
 

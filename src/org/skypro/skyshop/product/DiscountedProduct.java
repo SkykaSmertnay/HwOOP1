@@ -1,5 +1,9 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.article.Article;
+
+import java.util.Objects;
+
 public class DiscountedProduct extends Product{
    private int basePrice;
    private int discount;
@@ -40,4 +44,17 @@ public class DiscountedProduct extends Product{
         return true;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DiscountedProduct that = (DiscountedProduct) o;
+        return basePrice == that.basePrice && discount == that.discount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), basePrice, discount);
+    }
 }

@@ -1,5 +1,7 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.article.Article;
+
 public class FixPriceProduct extends Product{
     private final static int FIX_PRICE = 100;
     public FixPriceProduct(String name) {
@@ -20,4 +22,7 @@ public class FixPriceProduct extends Product{
     public boolean isSpecial() {
         return true;
     }
+
+
+
 }
