@@ -1,7 +1,5 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.article.Article;
-
 import java.util.Objects;
 
 public class DiscountedProduct extends Product{

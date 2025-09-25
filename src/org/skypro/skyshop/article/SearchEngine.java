@@ -2,8 +2,6 @@ package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.article.BestResultNotFound.BestResultNotFound;
 import org.skypro.skyshop.comparator.ProducNameComparator;
-import org.skypro.skyshop.product.Product;
-import java.lang.module.FindException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,13 +11,6 @@ public class SearchEngine   {
 
 
     public Set<Searchable> search(Searchable whatSearch) {
-        /*Set<Searchable> searched = new TreeSet<>(new ProducNameComparator());
-        for (Searchable item : searchable) {
-            if (item.searchTerm().contains(whatSearch.searchTerm())) {
-                searched.add(item);
-            }
-        }
-        return searched;*/
         return searchable.stream()
                 .filter(item -> item.searchTerm().contains(whatSearch.searchTerm()))
                 .collect(Collectors.toCollection(() -> new TreeSet<>(new ProducNameComparator())));
