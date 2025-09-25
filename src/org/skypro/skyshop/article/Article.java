@@ -1,6 +1,5 @@
 package org.skypro.skyshop.article;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public final class Article implements Searchable{

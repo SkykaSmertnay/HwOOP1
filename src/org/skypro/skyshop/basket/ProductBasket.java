@@ -14,15 +14,7 @@ public class ProductBasket {
    }
 
    public int basketPrice() {
-      /*int basketPrice = 0;
-      for (Map.Entry<String, List<Product>> entry : basketAll.entrySet()) {
-         for (Product product : entry.getValue()){
-            if (product != null) {
-               basketPrice = basketPrice + product.getPrice();
-            }
-         }
-      }
-      return basketPrice;*/
+
       return basketAll.values().stream()
               .flatMap(Collection::stream)
               .filter(Objects::nonNull)
